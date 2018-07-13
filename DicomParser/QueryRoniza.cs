@@ -108,8 +108,7 @@ namespace DicomParser
                     if (level == "SERIES" || level == "IMAGE")
                         message += stampa(currObj, (int)DICOM_TAGS_ENUM.SeriesDescription);
 
-                    if (level == "IMAGE")
-                    {
+                    if (level == "IMAGE") {
                         message += stampa(currObj, (int)DICOM_TAGS_ENUM.sopClassUid);
                         message += stampa(currObj, (int)DICOM_TAGS_ENUM.sopInstanceUID);
                     }

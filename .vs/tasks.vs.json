@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "attività-RayCasting",
+      "appliesTo": "DicomParser/Content/Shaders/RayCasting.fx",
+      "type": "launch"
+    },
+    {
+      "taskName": "attività-RayCasting",
+      "appliesTo": "DicomParser/Content/Shaders/RayCasting.fx",
+      "type": "launch"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 ﻿using DicomParser;
 using rzdcxLib;
 using System;
+using VolumeRayCasting;
 
 namespace Avvio
 {
@@ -9,8 +10,7 @@ namespace Avvio
         static Association MC;
         static Association PM;
         static Selector teodora;
-        static Selector jane;
-        static Selector provaGet;
+        static Selector john;
 
         static void initAssociationsAndSelectors()
         {
@@ -21,11 +21,12 @@ namespace Avvio
             MC.TargetAET = "ANYAE";
             MC.myAET = "DANIELEAE";
 
-            // spiridopoulou theodora of PixelMed
-            jane = new Selector();
-            jane.QueryRetrieveLevel = "PATIENT";
-            jane.patientName = "Doe^Jane";
-
+            // doe john of medical connections
+            john = new Selector();
+            john.QueryRetrieveLevel = "PATIENT";
+            // john.patientName = "Doe^John";
+            // john.sopInstanceUID = "1.3.6.1.4.1.5962.1.1.0.0.0.1184731235.1361.0.13";
+            john.sopClassUid = "1.2.840.10008.5.1.4.1.1.4";
 
             // PixelMed Publishing Tm
             PM = new Association();
@@ -40,23 +41,23 @@ namespace Avvio
             teodora.patientName = "SPIRIDOPOULOU THEODORA";
             // teodora.sopClassUid = "1.2.840.10008.5.1.4.1.1.1.1";
             // teodora.sopInstanceUID = "1.3.6.1.4.1.5962.99.1.1533435149.813488060.1530541825293.354.0";
-
-            provaGet = new Selector();
-            provaGet.QueryRetrieveLevel = "PATIENT";
-            //provaGet.sopClassUid = "1.2.840.10008.5.1.4.1.1.1.1";
-
+            
         }
-
 
         static void Main(String[] args)
         {
-            initAssociationsAndSelectors();
-            Console.WriteLine("ciao");
+            using (VolumetricRayCasting game = new VolumetricRayCasting())
+            {
+                game.Run();
+            }
 
-            QueryRoniza.find(MC, provaGet);
-            //  QueryRoniza.find(PM, teodora);
-            //  QueryRoniza.find(MC, jane);
-            //  System.Threading.Thread.Sleep(4000);
+
+            //   initAssociationsAndSelectors();
+
+            // QueryRoniza.find(MC, john);
+            //   QueryRoniza.find(PM, teodora);
+
+            // System.Threading.Thread.Sleep(4000);
             // QueryRoniza.moveAndStore(PM, teodora);
 
         }

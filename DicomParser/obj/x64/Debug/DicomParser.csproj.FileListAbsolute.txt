@@ -1,0 +1,17 @@
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Dicom.Native64.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\DicomParser.exe.config
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\DicomParser.exe
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\DicomParser.pdb
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Dicom.Core.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Microsoft.Xna.Framework.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Dicom.Core.pdb
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\x64\Debug\Dicom.Core.xml
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\Interop.rzdcxLib.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.csproj.ResolveComReference.cache
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.Properties.Resources.resources
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.csproj.GenerateResource.cache
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.csproj.CoreCompileInputs.cache
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.csproj.CopyComplete
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.exe
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\x64\Debug\DicomParser.pdb

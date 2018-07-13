@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\DicomParser"
+    "\\DicomParser",
+    "\\DicomParser\\Content",
+    "\\DicomParser\\Content\\Shaders"
   ],
+  "SelectedNode": "\\DicomParser\\Content\\Shaders\\RayCasting.fx",
   "PreviewInSolutionExplorer": false
 }

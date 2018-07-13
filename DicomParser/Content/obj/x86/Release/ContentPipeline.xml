@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Models\box.X</Source>
+      <Name>Models\box</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Models\box.xnb</Output>
+      <Time>2008-11-15T19:48:32.84375-05:00</Time>
+      <Dependency>
+        <Key>obj\x86\Release\Models\box_0.xml</Key>
+        <Value>2008-12-08T18:53:47.09375-05:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Font.spritefont</Source>
+      <Name>Font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Font.xnb</Output>
+      <Time>2008-05-01T02:48:44-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Shaders\RayCasting.fx</Source>
+      <Name>Shaders\RayCasting</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>WindowsEffectCompiler</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Shaders\RayCasting.xnb</Output>
+      <Time>0001-01-01T00:00:00</Time>
+    </Item>
+    <Item>
+      <Source>Shaders\GaussianBlur.fx</Source>
+      <Name>Shaders\GaussianBlur</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Shaders\GaussianBlur.xnb</Output>
+      <Time>2008-12-08T05:02:37.984375-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\volume.dds</Source>
+      <Name>Textures\volume</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="GenerateMipmaps">True</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Textures\volume.xnb</Output>
+      <Time>2008-11-22T17:39:24.671875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\transfer.png</Source>
+      <Name>Textures\transfer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\Textures\transfer.xnb</Output>
+      <Time>2008-11-19T21:23:53.71875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\box.X</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Release\Models\box_0.xml</Output>
+      <Time>2008-11-15T19:48:32.84375-05:00</Time>
+    </Item>
+    <BuildSuccessful>false</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <BuildConfiguration>Release</BuildConfiguration>
+      <CompressContent>true</CompressContent>
+      <RootDirectory>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\Content\obj\x86\Release\</IntermediateDirectory>
+      <OutputDirectory>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\VolumeRayCasting\bin\x86\Release\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Documents and Settings\KMan\My Documents\Visual Studio 2008\Projects\VolumeRayCasting\WindowsEffectCompiler\bin\x86\Release\WindowsEffectCompiler.dll</Key>
+        <Value>2008-12-08T18:53:42.21875-05:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2008-10-10T17:42:32-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2008-10-10T17:43:28-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2008-10-10T17:43:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2008-10-10T17:48:18-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2008-10-10T17:48:50-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.0.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2008-11-01T02:28:45.5-04:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

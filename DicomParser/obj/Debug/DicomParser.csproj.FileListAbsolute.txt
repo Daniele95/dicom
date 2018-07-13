@@ -14,3 +14,5 @@ C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\b
 C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\Debug\Dicom.Core.xml
 C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\Debug\DicomParser.csproj.CopyComplete
 C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\obj\Debug\DicomParser.csprojAssemblyReference.cache
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\daniele\Documents\Visual Studio 2017\Projects\DicomParser\DicomParser\bin\Debug\Microsoft.Xna.Framework.Game.dll
