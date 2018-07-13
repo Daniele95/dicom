@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DicomParser;
+using System;
 
 namespace Avvio
 {
@@ -19,23 +20,25 @@ namespace Avvio
 
             // PixelMed Publishing Tm
             PM = new Association();
-            PM.TargetIp = " 184.73.255.26";
+            PM.TargetIp = "184.73.255.26";
             PM.TargetPort = 11112;
             PM.TargetAET = "AWSPIXELMEDPUB";
             PM.myAET = "DANIELEAE";
 
             teodora = new Selector();
-            teodora.QueryRetrieveLevel = "PATIENT";
+            teodora.QueryRetrieveLevel = "IMAGE";
             teodora.patientName = "SPIRIDOPOULOU THEODORA";
             teodora.patientID = @"1140731";
-            teodora.studyDescription = "Foot L";
-            teodora.seriesDescription = "Foot L";
+            teodora.StudyDescription = "Foot L";
+            teodora.SeriesDescription = "Foot L";
         }
 
 
         static void Main(String[] args)
         {
             initAssociationsAndSelectors();
+            Console.WriteLine("ciao");
+            QueryRoniza.find(PM, teodora);
         }
 
     }
@@ -53,17 +56,17 @@ namespace Avvio
     {
         public String QueryRetrieveLevel;
 
-        public String patientName;
+        public String patientName; // tutti i livelli
         public String patientID;
 
-        public String sopClassUid;
-        public String sopInstanceUid;
+        public String sopClassUid;  // livello IMAGE
+        public String sopInstanceUid;   // livello IMAGE
 
-        public String studyDescription;
-        public String seriesDescription;
+        public String StudyDescription; // livello SERIES , STUDY, IMAGE
+        public String SeriesDescription; // livello SERIES, IMAGE,
 
-        public String studyInstanceUID;
-        public String seriesInstanceUID;
+        public String studyInstanceUID; // livello STUDY
+        public String seriesInstanceUID;    // livello SERIES
 
     }
 

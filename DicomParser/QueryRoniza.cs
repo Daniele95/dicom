@@ -8,7 +8,7 @@ namespace DicomParser
 {
     class QueryRoniza
     {
-        DCXOBJ fillData (Selector sel)
+        static DCXOBJ fillData (Selector sel)
         {
             DCXOBJ obj = new DCXOBJ();
             DCXELM el = new DCXELM();
@@ -17,18 +17,17 @@ namespace DicomParser
             el.Value = sel.QueryRetrieveLevel;
             obj.insertElement(el);
 
-            if(sel.patientName != "") {
                 el.Init((int)DICOM_TAGS_ENUM.patientName);
-                el.Value = sel.patientID;
+                el.Value = "SPIRIDOPOULOU THEODORA";
                 obj.insertElement(el);
-            }
-
+            el.Init((int)DICOM_TAGS_ENUM.StudyDescription);
+            obj.insertElement(el);
+            /*
             if (sel.patientID != "") {
                 el.Init((int)DICOM_TAGS_ENUM.patientID);
                 el.Value = sel.patientID;
                 obj.insertElement(el);
             }
-
 
             el.Init((int)DICOM_TAGS_ENUM.sopClassUid);
             obj.insertElement(el);
@@ -41,12 +40,12 @@ namespace DicomParser
 
             el.Init((int)DICOM_TAGS_ENUM.seriesInstanceUID);
             obj.insertElement(el);
-
+            */
             return obj;
 
         }
 
-        void Find(Association ass, Selector sel)
+        public static void find(Association ass, Selector sel)
         {
             DCXOBJ obj = fillData(sel);
 
@@ -65,13 +64,11 @@ namespace DicomParser
                 // Iterate over the query results
                 for (; !it.AtEnd(); it.Next())
                 {
-
                     currObj = it.Get();
                     string message = "";
-
-                    DCXELM currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.sopClassUid);
+                    DCXELM currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.StudyDescription);
                     if (currElem != null) message += " - sopClassUid: " + currElem.Value;
-
+                    /*
                     currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.sopInstanceUID);
                     if (currElem != null) message += " - sopInstanceUID: " + currElem.Value;
 
@@ -80,7 +77,9 @@ namespace DicomParser
 
                     currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.seriesInstanceUID);
                     if (currElem != null) message += " - seriesInstanceUID: " + currElem.Value;
-
+                    */
+                    Console.WriteLine("ciao2");
+                    Console.WriteLine(message);
                 }
             }
             catch (Exception ex)
