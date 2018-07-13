@@ -8,42 +8,75 @@ namespace DicomParser
 {
     class QueryRoniza
     {
+        static String level = "";
+
         static DCXOBJ fillData (Selector sel)
         {
             DCXOBJ obj = new DCXOBJ();
             DCXELM el = new DCXELM();
 
+            level = sel.QueryRetrieveLevel;
+
             el.Init((int)DICOM_TAGS_ENUM.QueryRetrieveLevel);
-            el.Value = sel.QueryRetrieveLevel;
+            el.Value = level;
             obj.insertElement(el);
 
-                el.Init((int)DICOM_TAGS_ENUM.patientName);
-                el.Value = "SPIRIDOPOULOU THEODORA";
-                obj.insertElement(el);
-            el.Init((int)DICOM_TAGS_ENUM.StudyDescription);
+            el.Init((int)DICOM_TAGS_ENUM.patientName);
+            if (sel.patientName != "")
+                el.Value = sel.patientName;
             obj.insertElement(el);
-            /*
-            if (sel.patientID != "") {
-                el.Init((int)DICOM_TAGS_ENUM.patientID);
-                el.Value = sel.patientID;
+            
+            if(level == "STUDY" || level == "SERIES" || level == "IMAGE") {
+                el.Init((int)DICOM_TAGS_ENUM.StudyDescription);
                 obj.insertElement(el);
             }
 
-            el.Init((int)DICOM_TAGS_ENUM.sopClassUid);
-            obj.insertElement(el);
+            if (level == "SERIES" || level == "IMAGE") {
+                el.Init((int)DICOM_TAGS_ENUM.SeriesDescription);
+                obj.insertElement(el);
+            }
 
-            el.Init((int)DICOM_TAGS_ENUM.sopInstanceUID);
-            obj.insertElement(el);
+            if (level == "IMAGE") {
+                el.Init((int)DICOM_TAGS_ENUM.sopClassUid);
+                if (sel.sopClassUid != "")
+                    el.Value = sel.sopClassUid;
+                obj.insertElement(el);
 
-            el.Init((int)DICOM_TAGS_ENUM.studyInstanceUID);
-            obj.insertElement(el);
+                el.Init((int)DICOM_TAGS_ENUM.sopInstanceUID);
+                if (sel.sopInstanceUID != "")
+                    el.Value = sel.sopInstanceUID;
+                obj.insertElement(el);
+            }
 
-            el.Init((int)DICOM_TAGS_ENUM.seriesInstanceUID);
-            obj.insertElement(el);
-            */
+            if (level == "STUDY") {
+                el.Init((int)DICOM_TAGS_ENUM.studyInstanceUID);
+                obj.insertElement(el);
+            }
+
+            if (level == "SERIES") {
+                el.Init((int)DICOM_TAGS_ENUM.seriesInstanceUID);
+                obj.insertElement(el);
+            }
+            
             return obj;
 
         }
+
+        static String elementName(int elementNumber)
+        {
+            DICOM_TAGS_ENUM myEnum = (DICOM_TAGS_ENUM)elementNumber;
+            return myEnum.ToString();
+        }
+
+        static DCXELM currElem;
+        static String stampa(DCXOBJ currObj, int elementNumber)
+        {
+            try {
+                currElem = currObj.getElementByTag(elementNumber);
+            } catch (Exception e) { Console.WriteLine(e.Message); } //Tag Not Found
+            return elementName(elementNumber) + ": " + currElem.Value+ " | ";
+        }
+
 
         public static void find(Association ass, Selector sel)
         {
@@ -66,19 +99,27 @@ namespace DicomParser
                 {
                     currObj = it.Get();
                     string message = "";
-                    DCXELM currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.StudyDescription);
-                    if (currElem != null) message += " - sopClassUid: " + currElem.Value;
-                    /*
-                    currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.sopInstanceUID);
-                    if (currElem != null) message += " - sopInstanceUID: " + currElem.Value;
+                    
+                    message += stampa(currObj, (int)DICOM_TAGS_ENUM.patientName);
+                    
+                    if (level == "STUDY" || level == "SERIES" || level == "IMAGE")
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.StudyDescription);
 
-                    currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.studyInstanceUID);
-                    if (currElem != null) message += " - studyInstanceUID: " + currElem.Value;
+                    if (level == "SERIES" || level == "IMAGE")
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.SeriesDescription);
 
-                    currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.seriesInstanceUID);
-                    if (currElem != null) message += " - seriesInstanceUID: " + currElem.Value;
-                    */
-                    Console.WriteLine("ciao2");
+                    if (level == "IMAGE")
+                    {
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.sopClassUid);
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.sopInstanceUID);
+                    }
+
+                    if (level == "STUDY")
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.studyInstanceUID);                   
+
+                    if (level == "SERIES")
+                        message += stampa(currObj, (int)DICOM_TAGS_ENUM.seriesInstanceUID);
+                    
                     Console.WriteLine(message);
                 }
             }
@@ -91,7 +132,7 @@ namespace DicomParser
 
 
 
-        public void MoveAndStore(Association ass, Selector sel)
+        public static void moveAndStore(Association ass, Selector sel)
         {
             // Create an object with the query matching criteria (Identifier)
             DCXOBJ query = fillData(sel);
