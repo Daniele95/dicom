@@ -9,29 +9,45 @@ using System.IO;
 using System.Linq;
 
 
-namespace QueryRetrieve_SCU
+namespace DicomQuery
 {
     class QueryFoDicom
     {
 
-        private static string StoragePath = @".\DICOM";
+        private static string StoragePath;
         // values of the Query Retrieve Server to test with.
-        private static string QRServerHost = "localhost"; // "www.dicomserver.co.uk";
-        private static int QRServerPort = 8001; // 104;
-        private static string QRServerAET = "QRSCP"; // "STORESCP";
-        private static string AET = "FODICOMSCU";
+        private string QRServerHost; // "www.dicomserver.co.uk";
+        private int QRServerPort; // 104;
+        private string QRServerAET; // "STORESCP";
+        private string AET;
+
+        private List<String> serieUids;
+        private DicomClient client;
+        private DicomCFindRequest request;
 
 
-        static void MoveAndStore()
+        public QueryFoDicom(Association ass)
         {
-            var client = new DicomClient();
+            StoragePath = @"provaDicom";
+            QRServerHost = ass.TargetIp;
+            QRServerPort = ass.TargetPort;
+            QRServerAET = ass.TargetAET;
+            AET = ass.myAET;
+        }
+
+
+        public String CFind(Selector sel)
+        {
+                
+            client = new DicomClient();
             client.NegotiateAsyncOps();
-            
+
             // Find a list of Studies
+            
+            request = CreateStudyRequestByPatientName(sel.patientName);
 
-            var request = CreateStudyRequestByPatientName("Tester^P*");
 
-            var studyUids = new List<string>();
+            List<String> studyUids = new List<string>();
             request.OnResponseReceived += (req, response) =>
             {
                 DebugStudyResponse(response);
@@ -40,16 +56,34 @@ namespace QueryRetrieve_SCU
             client.AddRequest(request);
             client.Send(QRServerHost, QRServerPort, false, AET, QRServerAET);
 
-            // find all series from a study that previous was returned
 
-            var studyUID = studyUids[0];
+            Console.WriteLine("ho prodotto lo study uid " + studyUids[0]);
+            return studyUids[0];
+
+        }
+
+
+        public void MoveAndStore(Selector sel, String seriesInstanceUID, String studyUID)
+        {
+
+
+            //  NON FUNZIONA find all series from a study that previous was returned
+
             request = CreateSeriesRequestByStudyUID(studyUID);
-            var serieUids = new List<string>();
+            serieUids = new List<string>();
+            /*
             request.OnResponseReceived += (req, response) =>
             {
                 DebugSerieResponse(response);
                 serieUids.Add(response.Dataset?.GetSingleValue<string>(DicomTag.SeriesInstanceUID));
+                Console.WriteLine("aggiungo serie");
             };
+            // -> porto StudyUID nella classe AvvioQuery
+            */
+            serieUids.Add(seriesInstanceUID);
+            Console.WriteLine("ho prodotto lo study uid " + studyUID);
+
+
             client.AddRequest(request);
             client.SendAsync(QRServerHost, QRServerPort, false, AET, QRServerAET).Wait();
 
@@ -80,7 +114,7 @@ namespace QueryRetrieve_SCU
 
             // here we want to see how a error case looks like - because the test QR Server does not know the node FODICOMSCP
             client = new DicomClient();
-            var cMoveRequest = CreateCMoveByStudyUID("STORESCP", studyUID);
+            var cMoveRequest = CreateCMoveByStudyUID(QRServerAET, studyUID);
             bool? moveSuccessfully = null;
             cMoveRequest.OnResponseReceived += (DicomCMoveRequest requ, DicomCMoveResponse response) =>
             {
@@ -135,7 +169,7 @@ namespace QueryRetrieve_SCU
 
             // add the dicom tags that contain the filter criterias
             request.Dataset.AddOrUpdate(DicomTag.PatientName, patientName);
-
+            
             return request;
         }
 
@@ -235,7 +269,7 @@ namespace QueryRetrieve_SCU
 
             new DicomFile(dataset).Save(path);
         }
-
+        
 
     }
 }

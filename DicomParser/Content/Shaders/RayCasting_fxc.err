@@ -1,2 +1,0 @@
-C:\Documents and Settings\KMan\Desktop\VolumeRayCasting_101_1\VolumeRayCasting_101\VolumeRayCasting\Content\Shaders\RayCasting.fx(121,12): warning X4121: gradient-based operations must be moved out of flow control to prevent divergence. Performance may improve by using a non-gradient operation
-

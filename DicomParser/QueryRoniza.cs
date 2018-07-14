@@ -1,10 +1,10 @@
-﻿using Avvio;
-using rzdcxLib;
+﻿using rzdcxLib;
 using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Forms;
 
-namespace DicomParser
+namespace DicomQuery
 {
     class QueryRoniza
     {
@@ -48,8 +48,10 @@ namespace DicomParser
                 obj.insertElement(el);
             }
 
-            if (level == "STUDY") {
+            if (level == "STUDY" || level == "SERIES") {
                 el.Init((int)DICOM_TAGS_ENUM.studyInstanceUID);
+                if (sel.studyInstanceUID != "")
+                    el.Value = sel.studyInstanceUID;
                 obj.insertElement(el);
             }
 
@@ -78,10 +80,10 @@ namespace DicomParser
         }
 
 
-        public static void find(Association ass, Selector sel)
+        public static String find(Association ass, Selector sel)
         {
             DCXOBJ obj = fillData(sel);
-
+            String ret = "";
             // Create the requester object
             DCXREQ req = new DCXREQ();
             // send the query 
@@ -93,7 +95,7 @@ namespace DicomParser
                            obj);
             DCXOBJ currObj = null;
             try
-            {
+            {   int index = 1;
                 // Iterate over the query results
                 for (; !it.AtEnd(); it.Next())
                 {
@@ -116,9 +118,18 @@ namespace DicomParser
                     if (level == "STUDY")
                         message += stampa(currObj, (int)DICOM_TAGS_ENUM.studyInstanceUID);                   
 
-                    if (level == "SERIES")
+                    if (level == "SERIES") { 
                         message += stampa(currObj, (int)DICOM_TAGS_ENUM.seriesInstanceUID);
-                    
+
+                        if( index == 1) { // l'UID della serie è il primo dello studio
+                            // non uso la funzione stampa, se no mi aggiunge altro testo oltre all'id
+                            try   { currElem = currObj.getElementByTag((int)DICOM_TAGS_ENUM.seriesInstanceUID); }
+                            catch (Exception e) { Console.WriteLine(e.Message); } //Tag Not Found
+                            ret = currElem.Value;
+                            Console.WriteLine(ret);
+                        }
+                    }
+                    index++;
                     Console.WriteLine(message);
                 }
             }
@@ -126,6 +137,7 @@ namespace DicomParser
             {
                 MessageBox.Show(ex.Message);
             }
+            return ret;
 
         }
 
